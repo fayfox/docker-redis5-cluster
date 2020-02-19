@@ -1,0 +1,98 @@
+version: "3.4"
+
+# 3.3版本新增的共享代码块功能
+x-image:
+  &default-image
+  redis:5.0.7
+
+x-command:
+  &default-command
+  redis-server /etc/redis/redis.conf
+
+services:
+  node1:
+    image: *default-image
+    volumes:
+      - ./7001/conf:/etc/redis:ro
+      # 数据目录就不映射了，docker for windows对这个东西的支持总有些莫名其妙的问题
+#      - ./7001/data:/data
+    environment:
+      # 时区
+      TZ: Asia/Shanghai
+    command: *default-command
+    ports:
+      # redis端口，由于不支持links，都得映射到物理机上去
+      # 如果是Linux环境的话，直接用network_mode: host也可以
+      - "7001:7001"
+      # 集群端口为redis端口+10000
+      - "17001:17001"
+  node2:
+    image: *default-image
+    volumes:
+      - ./7002/conf:/etc/redis:ro
+    environment:
+      TZ: Asia/Shanghai
+    command: *default-command
+    ports:
+      - "7002:7002"
+      - "17002:17002"
+  node3:
+    image: *default-image
+    volumes:
+      - ./7003/conf:/etc/redis:ro
+    environment:
+      TZ: Asia/Shanghai
+    command: *default-command
+    ports:
+      - "7003:7003"
+      - "17003:17003"
+  node4:
+    image: *default-image
+    volumes:
+      - ./7004/conf:/etc/redis:ro
+    environment:
+      TZ: Asia/Shanghai
+    command: *default-command
+    ports:
+      - "7004:7004"
+      - "17004:17004"
+  node5:
+    image: *default-image
+    volumes:
+      - ./7005/conf:/etc/redis:ro
+    environment:
+      TZ: Asia/Shanghai
+    command: *default-command
+    ports:
+      - "7005:7005"
+      - "17005:17005"
+  node6:
+    image: *default-image
+    volumes:
+      - ./7006/conf:/etc/redis:ro
+    environment:
+      TZ: Asia/Shanghai
+    command: *default-command
+    ports:
+      - "7006:7006"
+      - "17006:17006"
+  node7:
+    image: *default-image
+    volumes:
+      - ./7007/conf:/etc/redis:ro
+    environment:
+      TZ: Asia/Shanghai
+    command: *default-command
+    ports:
+      - "7007:7007"
+      - "17007:17007"
+  node8:
+    image: *default-image
+    volumes:
+      - ./7008/conf:/etc/redis:ro
+    environment:
+      TZ: Asia/Shanghai
+    command: *default-command
+    ports:
+      - "7008:7008"
+      - "17008:17008"
