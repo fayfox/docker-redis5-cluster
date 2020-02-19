@@ -2,8 +2,8 @@
 
 ### 相关说明
 
-1、配置了8个redis实例，分别为node1~node8  
-其中node1~node6为三主三从，node7、node8用于后续新增/删除节点测试
+1、配置了8个redis实例，分别为node1-node8  
+其中node1-node6为三主三从，node7、node8用于后续新增/删除节点测试
 
 2、Redis5不再需要`redis-trib.rb`，直接用`redis-cli`命令即可完成搭建
 
@@ -102,7 +102,7 @@ Can I set the above configuration? (type 'yes' to accept): **yes**
 
 至此，集群就配置好了，关闭某个节点模拟宕机很简单，随便玩就好了
 
-#### 3、新增主节点（扩容）
+#### 3、新增节点（扩容）
 
 命令格式
 
@@ -125,7 +125,7 @@ docker-compose exec node6 redis-cli --cluster reshard 192.168.1.108:7001
 ```
 
 返回示例
-```shell
+```
 >>> Performing Cluster Check (using node 192.168.1.108:7001)
 M: ab11d16be02d01d000c56c93970e31335d16928b 192.168.1.108:7001
    slots:[0-5460] (5461 slots) master
@@ -229,7 +229,7 @@ docker-compose exec node6 redis-cli --cluster reshard 192.168.1.108:7001
 
 返回示例
 
-```shell
+```
 >>> Performing Cluster Check (using node 192.168.1.108:7001)
 M: ab11d16be02d01d000c56c93970e31335d16928b 192.168.1.108:7001
    slots:[999-5460] (4462 slots) master
