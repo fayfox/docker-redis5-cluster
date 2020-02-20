@@ -37,7 +37,7 @@ cluster-enabled yes
 docker-compose exec node6 redis-cli --cluster-replicas 1 --cluster create 192.168.1.108:7001 192.168.1.108:7002 192.168.1.108:7003 192.168.1.108:7004 192.168.1.108:7005 192.168.1.108:7006
 ```
 
-> 物理机IP是`192.168.1.108`，这个看具体情况修改
+> 物理机IP是`192.168.1.108`，这个看具体情况修改  
 > `--cluster-replicas 1`表示每个主节点有一个从节点
 
 返回示例
@@ -181,7 +181,7 @@ Source node #1: all
 
 新增从节点有两种方式，都很简单
 
-4.1、可以直接在加节点的时候指定
+##### 4.1、可以直接在加节点的时候指定
 
 命令格式
 
@@ -191,7 +191,7 @@ redis-cli --cluster add-node `<新节点IP:新节点端口>` `<任意一个集�
 docker-compose exec node6 redis-cli --cluster add-node 192.168.1.108:7008 192.168.1.108:7001 --cluster-slave --cluster-master-id 7a3d7fe734370070c8dff44befb3d711cade8556
 ```
 
-4.2、也可以先往集群新增节点，然后在cli命令中指定
+##### 4.2、也可以先往集群新增节点，然后在cli命令中指定
 
 1、新增节点操作参考第三节
 
@@ -220,7 +220,7 @@ docker-compose exec node6 redis-cli --cluster del-node 192.168.1.108:7001 1c7bc4
 
 删除主节点比较复杂，直接删的话会报节点非空错误，需要先将槽位全部转移到集群内的其他节点，最后删除主节点
 
-6.1 移除槽位（跟新增的时候一样，都是重新分配槽位）
+##### 6.1 移除槽位（跟新增的时候一样，都是重新分配槽位）
 ```shell
 docker-compose exec node6 redis-cli --cluster reshard 192.168.1.108:7001
 ```
@@ -280,7 +280,7 @@ Source node #1: 7a3d7fe734370070c8dff44befb3d711cade8556
 Source node #2: done
 ```
 
-6.2 删除节点
+##### 6.2 删除节点
 ```shell
 docker-compose exec node6 redis-cli --cluster del-node 192.168.1.108:7001 7a3d7fe734370070c8dff44befb3d711cade8556
 ```
