@@ -16,8 +16,6 @@
 ### 修改配置文件
 
 ```
-# 关闭保护模式，需要从物理机IP组成集群
-protected-mode no
 # 修改端口号，注意因为是单机配置，每个container的端口号都得不一样
 port 7001
 # 启用集群
@@ -25,7 +23,7 @@ cluster-enabled yes
 ```
 
 > 其他集群参数（例如：`cluster-config-file`、 `cluster-node-timeout`）都不是必须要改的
-
+> 因为是单机测试，`protected-mode`其实也不需要改
 
 ### 启动容器
 

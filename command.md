@@ -99,3 +99,6 @@ docker-compose exec node6 redis-cli --cluster call 192.168.1.108:7001 dbsize
 
 ### keys操作
 只能列出当前节点的数据
+
+### mset
+基本上是不可用了，除非key对应到同一个slot
