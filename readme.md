@@ -7,7 +7,7 @@
 
 2、Redis5不再需要`redis-trib.rb`，直接用`redis-cli`命令即可完成搭建
 
-3、本文只修改集群必不可少的配置，其他辅助配置不做修改，例如：`appendonly`、 `requirepass`等
+3、本文只修改集群必不可少的配置，其他与集群没直接关系的配置不做修改，例如：`appendonly`、 `requirepass`等
 
 4、redis-cluster不支持docker的`--link`，即`bridge`模式的network，而docker for windows又不支持host模式，所以本文配置将所有端口映射到物理机，通过物理机进行配置
 
@@ -40,7 +40,7 @@ docker-compose exec node6 redis-cli --cluster-replicas 1 --cluster create 192.16
 ```
 
 > 物理机IP是`192.168.1.108`，这个看具体情况修改
-> `--cluster-replicas 1`表示每个节点有一个从节点
+> `--cluster-replicas 1`表示每个主节点有一个从节点
 
 返回示例
 ```shell
