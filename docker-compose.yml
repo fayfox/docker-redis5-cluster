@@ -26,6 +26,10 @@ services:
       - "7001:7001"
       # 集群端口为redis端口+10000
       - "17001:17001"
+    # ports和host选其一
+    # docker for windows不支持host，只能用ports
+    # 而ports只能测集群效果，不能用于远程连接
+#    network_mode: host
   node2:
     image: *default-image
     volumes:

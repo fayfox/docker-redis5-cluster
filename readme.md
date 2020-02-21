@@ -2,6 +2,8 @@
 
 ### 相关说明
 
+0、由于docker for windows不支持network: `host`模式，而redis cluster对`bridge`模式支持又不好（具体表现为，即便用物理机IP构建集群，连接集群后依旧得到的是容器内IP，无法重定向），所以，配置端口映射只能测试一下集群效果，无法在程序中远程连接。在linux上用`host`模式可以用于生产
+
 1、配置了8个redis实例，分别为node1-node8  
 其中node1-node6为三主三从，node7、node8用于后续新增/删除节点测试
 
